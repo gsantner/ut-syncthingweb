@@ -1,0 +1,20 @@
+{
+  "postmake": " ", "template": "pure", "kill": "webapp-container*",
+  "postbuild": "cd ../../../ && pwd && clickable custom_postbuild_prepackage_del_by_ext custom_postbuild_prepackage",
+  "ignore": [ ".clickable", ".git", ".gitignore", ".gitmodules", "metadata", "build", "LICENSE", "LICENSE.md", "LICENSE.txt", "README.md", "CHANGELOG.md", "orig", "dl-github-syncthing-latest-release.sh"],
+
+
+  "scripts": {
+    "newline": "echo ''",
+    "nop": "",
+    "pp_echo_size": "cd build/all/app; find . -iname '*.click' | xargs du -sh | cut -d'\t' -f1 | sed 's@^@Package filesize: @'",
+    "pp_echo_install_run": "echo \"#########################################\n## \\e[0;32mInstall & Run App\\e[0m\"",
+    "targets": "clickable commands 2>/dev/null; :",
+    "fin_echo_forget_review": "echo \"#########################################\nRun before uploading app to OpenStore:\n  $ clickable review\"",
+
+    "custom_postbuild_prepackage_del_by_ext": "find build -iname '*.something' -or -iname '*.something' -delete",
+    "custom_postbuild_prepackage": "clickable nop",
+    
+    "_":""},
+  "default": "clean build pp_echo_size newline pp_echo_install_run install launch fin_echo_forget_review"
+}
